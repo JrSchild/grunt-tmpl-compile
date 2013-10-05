@@ -21,17 +21,19 @@ module.exports = function(grunt) {
       preCompile: true,
     });
 
+    // Define templates to generate the themplate files.
+    var template_tmpl = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = function(obj) {\nvar template='<%= templates[i].templateString %>';\nreturn (this.<%= templates[i].name %> = _.template(template))(obj);\n};\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
+    var template_tmpl_preCompile = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = <%= templates[i].template %>;\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
+
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
-      var template_tmpl = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = function(obj) {\nvar template='<%= templates[i].templateString %>';\nreturn (this.<%= templates[i].name %> = _.template(template))(obj);\n};\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
-      var template_tmpl_preCompile = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = <%= templates[i].template %>;\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
       var tmpl_data = {
         namespace: options.namespace,
         templates: [],
       };
 
       // Concat specified files.
-      var ok = f.src.filter(function(filepath) {
+      f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -51,7 +53,7 @@ module.exports = function(grunt) {
         });
       });
 
-      // Render and write the destination file.
+      // Render with correct compiler and write the destination file.
       grunt.file.write(f.dest, _.template(options.preCompile ? template_tmpl_preCompile : template_tmpl, tmpl_data));
 
       // Print a success message.
