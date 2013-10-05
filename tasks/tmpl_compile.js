@@ -9,7 +9,6 @@
 'use strict';
 
 module.exports = function(grunt) {
-  var _ = require('underscore');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -19,7 +18,10 @@ module.exports = function(grunt) {
     var options = this.options({
       namespace: 'Templates',
       preCompile: true,
+      library: 'lodash'
     });
+
+    var _ = require(options.library);
 
     // Define templates to generate the themplate files.
     var template_tmpl = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = function(obj) {\nvar template='<%= templates[i].templateString %>';\nreturn (this.<%= templates[i].name %> = _.template(template))(obj);\n};\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";

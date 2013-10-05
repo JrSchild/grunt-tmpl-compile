@@ -22,7 +22,9 @@ In your project's Gruntfile, add a section named `tmpl_compile` to the data obje
 grunt.initConfig({
   tmpl_compile: {
     options: {
-      // Task-specific options go here.
+      namespace: 'Templates',
+      preCompile: true,
+      library: 'lodash'
     },
     your_target: {
       // Target-specific file lists and/or options go here.
@@ -48,7 +50,7 @@ Wether to precompile the templates, or create a function that will compile it on
 ### Usage Examples
 
 #### Default Options
-In this example, the templates template_1 and template_2 will be concatenated to the file pre_compiled.js and added to the global namespace Templates.`
+In this example, the templates template_1 and template_2 will be concatenated to the file pre_compiled.js and added to the global namespace Templates. By default the lodash library will be used.`
 
 ```js
 grunt.initConfig({
@@ -70,6 +72,7 @@ grunt.initConfig({
     options: {
       namespace: 'CustomNamespace',
       preCompile: false,
+      library: 'underscore'
     },
     files: {
       'tmp/compiled.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
