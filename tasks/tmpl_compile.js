@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
-      var template_tmpl = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = function() {\nvar template='<%= templates[i].templateString %>';\n(this.<%= templates[i].name %> = _.template(template))();\n};\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
+      var template_tmpl = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = function(obj) {\nvar template='<%= templates[i].templateString %>';\nreturn (this.<%= templates[i].name %> = _.template(template))(obj);\n};\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
       var template_tmpl_preCompile = "(function(namespace) {\n\n<% for(var i=0,l=templates.length; i<l; i++) { %>namespace.<%= templates[i].name %> = <%= templates[i].template %>;\n\n<% } %>})(window.<%= namespace %> = window.<%= namespace %> || {});";
       var tmpl_data = {
         namespace: options.namespace,
