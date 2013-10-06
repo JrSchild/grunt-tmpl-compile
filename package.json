@@ -1,7 +1,7 @@
 {
   "name": "grunt-tmpl-compile",
   "description": "Concat and pre-compile your underscore and lodash template files.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/JrSchild/grunt-tmpl-compile",
   "author": {
     "name": "JrSchild"
@@ -28,8 +28,7 @@
   },
   "dependencies": {
     "underscore": "~1.5.2",
-    "lodash": "~2.2.1",
-    "grunt-lib-contrib": "~0.5.1"
+    "lodash": "~2.2.1"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
