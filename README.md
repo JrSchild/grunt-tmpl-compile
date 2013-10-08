@@ -1,4 +1,4 @@
-# grunt-tmpl-compile v0.1.1
+# grunt-tmpl-compile v0.2.0
 
 > Concat and pre-compile your underscore and lodash template files.
 
@@ -89,4 +89,5 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 2013-10-08   v0.2.0   Rework the generated files. Library of choise optional. Option to include full dirs with sub directories.
 * 2013-10-06   v0.1.1   Remove grunt-lib-contrib. Place template files in external file.

@@ -36,13 +36,31 @@ exports.tmpl_compile = {
 
     test.done();
   },
-  compiled: function(test) {
+  concat: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/compiled.js');
-    var expected = grunt.file.read('test/expected/compiled.js');
+    var actual = grunt.file.read('tmp/concatted.js');
+    var expected = grunt.file.read('test/expected/concatted.js');
     test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
 
     test.done();
   },
+  inclsubdirs: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/inclsubdirs.js');
+    var expected = grunt.file.read('test/expected/inclsubdirs.js');
+    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+
+    test.done();
+  },
+  inclsubdirsconcat: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/inclsubdirsconcat.js');
+    var expected = grunt.file.read('test/expected/inclsubdirsconcat.js');
+    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+
+    test.done();
+  }
 };

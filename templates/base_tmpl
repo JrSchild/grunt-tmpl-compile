@@ -1,0 +1,7 @@
+(function(window) {
+
+	window.<%= namespace %> = {
+<%= formatTmpl({templates: templates, formatTmpl: formatTmpl, t: ''}) %>
+	}
+
+})(window);

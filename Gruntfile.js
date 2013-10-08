@@ -39,13 +39,34 @@ module.exports = function(grunt) {
           'tmp/pre_compiled.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
         },
       },
-      compiled: {
+      concat: {
         options: {
           namespace: 'CustomNamespace',
           preCompile: false,
         },
         files: {
-          'tmp/compiled.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+          'tmp/concatted.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+        },
+      },
+      inclsubdirs: {
+        options: {
+          namespace: 'CustomNamespace',
+          preCompile: true,
+          library: 'underscore',
+          subDirectories: true,
+        },
+        files: {
+          'tmp/inclsubdirs.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures'],
+        },
+      },
+      inclsubdirsconcat: {
+        options: {
+          namespace: 'CustomNamespace',
+          preCompile: false,
+          subDirectories: true,
+        },
+        files: {
+          'tmp/inclsubdirsconcat.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures'],
         },
       },
     },
