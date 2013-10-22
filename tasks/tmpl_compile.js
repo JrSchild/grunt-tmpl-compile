@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         var tmpl_data = [];
 
         array.map(function(path) {
-          path = basePath + '/' + path;
+          path = (basePath || '') + path;
 
           try {
             var stats = fs.lstatSync(path);
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
               // loop through the directory and recursivly add the subfiles/folders to this tmpl data.
               tmpl_data.push({
                 name: path.match(/[^\/]+$/)[0],
-                templates: buildTmplData(fs.readdirSync(path), path),
+                templates: buildTmplData(fs.readdirSync(path), path + '/'),
               });
               return;
             }
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
       };
 
       // Generate the template-data.
-      tmpl_data.templates = buildTmplData(f.src, __dirname + '/../');
+      tmpl_data.templates = buildTmplData(f.orig.src, __dirname + '/../../../');
 
       // Load the base file and the right format-template file.
       var base_tmpl = grunt.file.read(__dirname + '/../templates/base_tmpl');
