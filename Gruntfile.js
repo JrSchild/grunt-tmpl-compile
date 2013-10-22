@@ -35,18 +35,20 @@ module.exports = function(grunt) {
           namespace: 'Templates',
           preCompile: true,
         },
-        files: {
-          'tmp/pre_compiled.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
-        },
+        files: [{
+          src: ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+          dest: 'tmp/pre_compiled.js'
+        }]
       },
       concat: {
         options: {
           namespace: 'CustomNamespace',
           preCompile: false,
         },
-        files: {
-          'tmp/concatted.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
-        },
+        files: [{
+          src: ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+          dest: 'tmp/concatted.js'
+        }]
       },
       inclsubdirs: {
         options: {
@@ -55,9 +57,10 @@ module.exports = function(grunt) {
           library: 'underscore',
           subDirectories: true,
         },
-        files: {
-          'tmp/inclsubdirs.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures'],
-        },
+        files: [{
+          src: ['test/fixtures'],
+          dest: 'tmp/inclsubdirs.js'
+        }]
       },
       inclsubdirsconcat: {
         options: {
@@ -65,9 +68,10 @@ module.exports = function(grunt) {
           preCompile: false,
           subDirectories: true,
         },
-        files: {
-          'tmp/inclsubdirsconcat.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures'],
-        },
+        files: [{
+          src: ['test/fixtures'],
+          dest: 'tmp/inclsubdirsconcat.js'
+        }]
       },
     },
 

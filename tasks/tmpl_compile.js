@@ -31,6 +31,11 @@ module.exports = function(grunt) {
         templates: [],
       };
 
+      // Todo: pass string to src, convert to array here.
+      if (typeof f.src === 'string') {
+        f.src = [f.src];
+      }
+
       /*
        * Set the template data and compile the template
        * @return {Object}
@@ -51,25 +56,29 @@ module.exports = function(grunt) {
        * Recursivly build a template-data object.
        * @return {Array}
        */
-      var buildTmplData = function(array, basePath) {
+      var buildTmplData = function(array, basePath, lvl) {
         var tmpl_data = [];
+        lvl = lvl || 0;
 
         array.map(function(path) {
           path = (basePath || '') + path;
 
           try {
             var stats = fs.lstatSync(path);
-
             if (stats.isFile()) {
               tmpl_data.push(setTmpl(path));
               return;
             }
             if (stats.isDirectory() && options.subDirectories) {
-              // loop through the directory and recursivly add the subfiles/folders to this tmpl data.
-              tmpl_data.push({
-                name: path.match(/[^\/]+$/)[0],
-                templates: buildTmplData(fs.readdirSync(path), path + '/'),
-              });
+              if (lvl === 0) {
+                tmpl_data = tmpl_data.concat(buildTmplData(fs.readdirSync(path), path + '/', lvl+1 ));
+              } else {
+                // loop through the directory and recursivly add the subfiles/folders to this tmpl data.
+                tmpl_data.push({
+                  name: path.match(/[^\/]+$/)[0],
+                  templates: buildTmplData(fs.readdirSync(path), path + '/', lvl+1 ),
+                });
+              }
               return;
             }
           } catch(e) {
@@ -81,7 +90,7 @@ module.exports = function(grunt) {
       };
 
       // Generate the template-data.
-      tmpl_data.templates = buildTmplData(f.orig.src, __dirname + '/../../../');
+      tmpl_data.templates = buildTmplData(f.orig.src);
 
       // Load the base file and the right format-template file.
       var base_tmpl = grunt.file.read(__dirname + '/../templates/base_tmpl');

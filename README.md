@@ -1,4 +1,4 @@
-# grunt-tmpl-compile v0.2.1
+# grunt-tmpl-compile v0.2.2
 
 > Concat and pre-compile your underscore and lodash template files.
 
@@ -30,10 +30,10 @@ grunt.initConfig({
       preCompile: true,
       library: 'lodash'
     },
-    your_target: {
+    files: {
       // Target-specific file lists and/or options go here.
-    },
-  },
+    }
+  }
 })
 ```
 
@@ -60,10 +60,11 @@ In this example, the templates template_1 and template_2 will be concatenated to
 grunt.initConfig({
   tmpl_compile: {
     options: {},
-    files: {
-      'tmp/pre_compiled.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
-    },
-  },
+    files: [{
+      src: ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+      dest: 'tmp/pre_compiled.js'
+    }]
+  }
 })
 ```
 
@@ -78,10 +79,11 @@ grunt.initConfig({
       preCompile: false,
       library: 'underscore'
     },
-    files: {
-      'tmp/compiled.js': ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
-    },
-  },
+    files: [{
+      src: ['test/fixtures'],
+      dest: 'tmp/pre_compiled.js'
+    }]
+  }
 })
 ```
 
@@ -89,6 +91,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 2013-10-08   v0.2.1   Fix in paths. Update 'files'-option to be more in line with guidelines.
 * 2013-10-08   v0.2.1   Small update in paths.
 * 2013-10-08   v0.2.0   Rework the generated files. Library of choise optional. Option to include full dirs with sub directories.
 * 2013-10-06   v0.1.1   Remove grunt-lib-contrib. Place template files in external file.
