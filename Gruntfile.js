@@ -36,7 +36,7 @@ module.exports = function(grunt) {
           preCompile: true,
         },
         files: [{
-          src: ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+          src: ['test/templates_1/template_1.tmpl.html', 'test/templates_1/template_2.tmpl.html'],
           dest: 'tmp/pre_compiled.js'
         }]
       },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
           preCompile: false,
         },
         files: [{
-          src: ['test/fixtures/template_1.tmpl.html', 'test/fixtures/template_2.tmpl.html'],
+          src: ['test/templates_1/template_1.tmpl.html', 'test/templates_1/template_2.tmpl.html'],
           dest: 'tmp/concatted.js'
         }]
       },
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           subDirectories: true,
         },
         files: [{
-          src: ['test/fixtures'],
+          src: ['test/templates_1'],
           dest: 'tmp/inclsubdirs.js'
         }]
       },
@@ -69,10 +69,29 @@ module.exports = function(grunt) {
           subDirectories: true,
         },
         files: [{
-          src: ['test/fixtures'],
+          src: ['test/templates_1'],
           dest: 'tmp/inclsubdirsconcat.js'
         }]
       },
+      one_subdir: {
+        options: {
+          subDirectories: true,
+        },
+        files: [{
+          src: ['test/templates_2'],
+          dest: 'tmp/one_subdir.js'
+        }]
+      },
+      one_subdirconcat: {
+        options: {
+          subDirectories: true,
+          preCompile: false,
+        },
+        files: [{
+          src: ['test/templates_2'],
+          dest: 'tmp/one_subdirconcat.js'
+        }]
+      }
     },
 
     // Unit tests.
