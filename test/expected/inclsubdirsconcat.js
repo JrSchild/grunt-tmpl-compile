@@ -12,7 +12,7 @@
 			template_4: function(obj) {
 				var template='<div>\n  <% for ( var i = 0; i < images.length; i++ ) { %>\n    <div>\n    	<img src="<%= images[i].url %>" alt="<%= images[i].alt %>" />\n    </div>\n  <% } %>\n</div>';
 				return (this.template_4 = _.template(template))(obj);
-			},
+			}
 
 		},
 
@@ -24,7 +24,7 @@
 		template_2: function(obj) {
 			var template='<div>\n  <% for ( var i = 0; i < images.length; i++ ) { %>\n    <div>\n    	<img src="<%= images[i].url %>" alt="<%= images[i].alt %>" />\n    </div>\n  <% } %>\n</div>';
 			return (this.template_2 = _.template(template))(obj);
-		},
+		}
 
 	}
 

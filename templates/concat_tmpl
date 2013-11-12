@@ -3,10 +3,10 @@
 %>
 <%=t%>		<%= templates[i].name %>:<% if (templates[i].templates) { %> {
 <%=t%>			<%= formatTmpl({templates: templates[i].templates, formatTmpl: formatTmpl, t: t+'\t'}) %>
-<%=t%>		},<% } else { %> function(obj) {
+<%=t%>		}<%= templates.length - 1 === i ? '' : ',' %><% } else { %> function(obj) {
 <%=t%>			var template='<%= templates[i].templateString %>';
 <%=t%>			return (this.<%= templates[i].name %> = _.template(template))(obj);
-<%=t%>		},<% } %>
+<%=t%>		}<%= templates.length - 1 === i ? '' : ',' %><% } %>
 <%
 	}
 %>

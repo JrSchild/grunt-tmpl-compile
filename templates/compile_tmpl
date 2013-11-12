@@ -3,7 +3,7 @@
 %>
 <%=t%>		<%= templates[i].name %>:<% if (templates[i].templates) { %> {
 <%=t%>			<%= formatTmpl({templates: templates[i].templates, formatTmpl: formatTmpl, t: t+'\t'}) %>
-<%=t%>		},<% } else { %> <%= templates[i].template.split('\n').join('\n\t\t\t' + t).replace(/\t\}$/g, '}') %>,<% } %>
+<%=t%>		}<%= templates.length - 1 === i ? '' : ',' %><% } else { %> <%= templates[i].template.split('\n').join('\n\t\t\t' + t).replace(/\t\}$/g, '}') %><%= templates.length - 1 === i ? '' : ',' %><% } %>
 <%
 	}
 %>
