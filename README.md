@@ -1,4 +1,4 @@
-# grunt-tmpl-compile v0.2.3
+# grunt-tmpl-compile v0.2.4
 
 > Concat and pre-compile your underscore and lodash template files.
 
@@ -91,6 +91,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 2013-24-12   v0.2.4   Quickfix: ignore .DS_Store files.
 * 2013-11-12   v0.2.3   Bugfix; remove trailing comma.
 * 2013-10-22   v0.2.2   Fix in paths. Update 'files'-option to be more in line with guidelines.
 * 2013-10-22   v0.2.1   Small update in paths.

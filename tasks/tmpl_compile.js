@@ -62,6 +62,9 @@ module.exports = function(grunt) {
 
         array.map(function(path) {
           path = (basePath || '') + path;
+          if (path.match('.DS_Store')) {
+            return;
+          }
 
           try {
             var stats = fs.lstatSync(path);
